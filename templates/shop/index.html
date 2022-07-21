@@ -358,7 +358,7 @@
                 <span class="product-label label-circle label-top"
                   >Top</span
                 >
-                <a href="product.html">
+                <a href="{{product.get_product_url}}">
                   <img
                     src="{{product.image.url}}"
                     alt="Product image"
@@ -399,7 +399,7 @@
                 </div>
                 <!-- End .product-cat -->
                 <h3 class="product-title">
-                  <a href="product.html">{{product.name}}</a>
+                  <a href="{{product.get_product_url}}">{{product.name}}</a>
                 </h3>
                 <!-- End .product-title -->
                 <div class="product-price">$ {{product.price}}</div>

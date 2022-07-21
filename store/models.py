@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -36,6 +37,9 @@ class Product(models.Model):
         return self.name
     class Meta:
         ordering=['-created']
+        
+    def get_product_url(self):
+        return reverse('store:product-details', kwargs={'slug': self.slug})
         
     def save(self,*args, **kwargs):
         if not self.slug:
