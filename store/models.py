@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 
 class Category(models.Model):
@@ -28,9 +29,15 @@ class Product(models.Model):
     price =models.FloatField()
     old_price=models.FloatField(default=0.00,blank=True,null=True)
     is_stoke = models.BooleanField(default=True)
+    slug = models.SlugField(unique=True)
     created=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
     class Meta:
         ordering=['-created']
+        
+    def save(self,*args, **kwargs):
+        if not self.slug:
+            self.slug=slugify(self.name)
+        return super().save(*args,**kwargs)
